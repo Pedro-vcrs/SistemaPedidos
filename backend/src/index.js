@@ -13,6 +13,21 @@ const pedidosRouter = require('./routes/pedidos');
 
 const app = express();
 
+// ========== VALIDAÇÕES DE AMBIENTE ==========
+if (process.env.NODE_ENV === 'production') {
+  if (!process.env.JWT_SECRET) {
+    console.error('❌ ERRO CRÍTICO: JWT_SECRET não configurado!');
+    process.exit(1);
+  }
+  
+  if (!process.env.DATABASE_URL && !process.env.DB_HOST) {
+    console.error('❌ ERRO CRÍTICO: Banco de dados não configurado!');
+    process.exit(1);
+  }
+  
+  console.log('✅ Ambiente de produção configurado corretamente');
+}
+
 // Segurança
 app.use(helmet());
 app.use(cors({

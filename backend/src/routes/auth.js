@@ -50,41 +50,5 @@ router.post('/login', loginLimiter, async (req, res) => {
   }
 });
 
-// Registrar primeiro admin (remover após criar)
-router.post('/registrar-admin', async (req, res) => {
-  const SENHA_MESTRA = process.env.ADMIN_MASTER_KEY;
-  
-  if (!SENHA_MESTRA) {
-    return res.status(500).json({ error: 'Configuração inválida' });
-  }
-  
-  if (req.body.masterKey !== SENHA_MESTRA) {
-    return res.status(403).json({ error: 'Chave mestra inválida' });
-  }
-
-  try {
-    const { nome, email, senha } = req.body;
-
-    // Verificar se já existe admin
-    const adminExistente = await Usuario.findOne({ where: { role: 'ADMIN' } });
-    if (adminExistente) {
-      return res.status(400).json({ error: 'Já existe um administrador cadastrado' });
-    }
-
-    const senhaHash = await bcrypt.hash(senha, 10);
-
-    const usuario = await Usuario.create({
-      nome,
-      email,
-      senha: senhaHash,
-      role: 'ADMIN'
-    });
-
-    res.json({ message: 'Administrador criado com sucesso', usuario: { id: usuario.id, nome: usuario.nome, email: usuario.email } });
-  } catch (error) {
-    console.error('Erro ao registrar admin:', error);
-    res.status(500).json({ error: 'Erro ao criar administrador' });
-  }
-});
 
 module.exports = router;
