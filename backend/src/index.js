@@ -36,6 +36,22 @@ app.use(cors({
 }));
 app.use(bodyParser.json());
 
+app.get('/', (req, res) => {
+  res.json({ 
+    status: 'ok', 
+    message: 'Sistema de Pedidos API',
+    version: '1.0.0',
+    timestamp: new Date().toISOString()
+  });
+});
+
+app.get('/health', (req, res) => {
+  res.json({ 
+    status: 'healthy',
+    database: sequelize.authenticate() ? 'connected' : 'disconnected'
+  });
+});
+
 // ========== ROTAS PÚBLICAS ==========
 app.use('/api/auth', authRouter);
 
@@ -83,7 +99,7 @@ app.use('/api/pedidos', verificarToken, pedidosRouter);
 const PORT = process.env.PORT || 3000;
 
 sequelize.sync().then(() => {
-  app.listen(PORT, () => {
+  app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Backend rodando em http://localhost:${PORT}`);
     console.log(`✅ Rota pública: http://localhost:${PORT}/api/pedidos/publico/listar`);
   });
