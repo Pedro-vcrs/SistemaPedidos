@@ -49,13 +49,13 @@ module.exports = (sequelize, DataTypes) => {
         isDate: { msg: 'Prazo de entrega deve ser uma data válida' }
       }
     },
-    // ✅ NOVO CAMPO
+    
     dataEntrega: {
       type: DataTypes.DATEONLY,
       allowNull: true,
       comment: 'Data em que o pedido foi efetivamente entregue ao cliente'
     },
-    // ✅ NOVO CAMPO
+   
     telefoneCliente: {
       type: DataTypes.STRING(15),
       allowNull: true,

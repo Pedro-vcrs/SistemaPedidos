@@ -19,7 +19,7 @@ router.get('/publico/listar', async (req, res) => {
         }
       },
       order: [
-        ['status', 'ASC'], // CONCLUIDO primeiro, ENTREGUE depois
+        ['status', 'ASC'],
         ['createdAt', 'DESC']
       ]
     });
@@ -108,13 +108,13 @@ router.post('/', async (req, res) => {
   try {
     const {
       clienteNome,
-      telefoneCliente,  // ✅ NOVO
+      telefoneCliente, 
       tipoServico,
       descricaoServico,
       quantidade,
       precoUnitario,
       prazoEntrega,
-      dataEntrega,  // ✅ NOVO
+      dataEntrega, 
       observacoes,
       prioridade
     } = req.body;
@@ -140,7 +140,7 @@ router.post('/', async (req, res) => {
     if (!cliente) {
       cliente = await Cliente.create({
         nome: clienteNome.trim(),
-        telefone: telefoneCliente || '00000000000',  // ✅ Usar telefone do formulário
+        telefone: telefoneCliente || '00000000000',  
         email: null
       });
     }
@@ -148,13 +148,13 @@ router.post('/', async (req, res) => {
     // Criar pedido
     const novo = await Pedido.create({
       clienteId: cliente.id,
-      telefoneCliente: telefoneCliente || null,  // ✅ NOVO
+      telefoneCliente: telefoneCliente || null,  
       tipoServico: tipoServico || 'COSTURA',
       descricaoServico,
       quantidade: quantidade || 1,
       precoUnitario: precoUnitario || 0,
       prazoEntrega,
-      dataEntrega: dataEntrega || null,  // ✅ NOVO
+      dataEntrega: dataEntrega || null, 
       observacoes,
       prioridade: prioridade || 'MEDIA'
     });

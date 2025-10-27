@@ -7,8 +7,8 @@ const { gerarToken } = require('../middleware/auth');
 
 // Rate limiter para login
 const loginLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutos
-  max: 5, // 5 tentativas
+  windowMs: 15 * 60 * 1000, 
+  max: 5, 
   message: { error: 'Muitas tentativas de login. Tente novamente em 15 minutos.' }
 });
 

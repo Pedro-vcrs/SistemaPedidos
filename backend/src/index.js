@@ -35,7 +35,7 @@ app.get('/api/pedidos/publico/listar', async (req, res) => {
         model: Cliente,
         required: true
       }],
-      // ✅ REMOVIDO O FILTRO DE STATUS - agora mostra TODOS
+      
       order: [
         ['status', 'ASC'],
         ['createdAt', 'DESC']

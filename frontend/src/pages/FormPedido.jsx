@@ -11,13 +11,13 @@ export default function FormPedido() {
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     clienteNome: '',
-    telefoneCliente: '',  // ❌ ERRO: estava "telefoneCLiente" com L maiúsculo
+    telefoneCliente: '',  
     tipoServico: 'COSTURA',
     descricaoServico: '',
     quantidade: 1,
     precoUnitario: '',
     prazoEntrega: '',
-    dataEntrega: '',  // ❌ FALTAVA este campo
+    dataEntrega: '',  
     observacoes: '',
     prioridade: 'MEDIA',
     status: 'PENDENTE'
@@ -35,13 +35,13 @@ export default function FormPedido() {
       const pedido = response.data;
       setFormData({
         clienteNome: pedido.Cliente?.nome || '',
-        telefoneCliente: pedido.telefoneCliente || '',  // ✅ Corrigido
+        telefoneCliente: pedido.telefoneCliente || '',  
         tipoServico: pedido.tipoServico || 'COSTURA',
         descricaoServico: pedido.descricaoServico,
         quantidade: pedido.quantidade,
         precoUnitario: pedido.precoUnitario,
         prazoEntrega: pedido.prazoEntrega || '',
-        dataEntrega: pedido.dataEntrega || '',  // ✅ Adicionado
+        dataEntrega: pedido.dataEntrega || '',  
         observacoes: pedido.observacoes || '',
         prioridade: pedido.prioridade,
         status: pedido.status
@@ -59,7 +59,7 @@ export default function FormPedido() {
       novosErros.clienteNome = 'Nome do cliente deve ter pelo menos 3 caracteres';
     }
 
-    // ✅ Telefone é OPCIONAL - não validar se vazio
+  
     if (formData.telefoneCliente && formData.telefoneCliente.replace(/\D/g, '').length < 10) {
       novosErros.telefoneCliente = 'Telefone deve ter pelo menos 10 dígitos';
     }
@@ -174,7 +174,7 @@ export default function FormPedido() {
               </label>
               <input
                 type="tel"
-                name="telefoneCliente"  // ✅ Nome correto
+                name="telefoneCliente" 
                 value={formData.telefoneCliente}
                 onChange={handleChange}
                 placeholder="(41) 99999-9999"

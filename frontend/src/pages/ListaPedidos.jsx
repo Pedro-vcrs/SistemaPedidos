@@ -52,7 +52,6 @@ export default function ListaPedidos() {
     }
   };
 
-  // NOVO: Função específica para marcar como entregue
   const marcarComoEntregue = async (id) => {
     await atualizarStatus(id, 'ENTREGUE');
   };

@@ -9,7 +9,7 @@ async function seed() {
     
     console.log('✅ Banco sincronizado!\n');
 
-    // 1. Criar usuário admin
+    //Criar usuário admin
     console.log('👤 Criando usuário admin...');
     await Usuario.create({
       nome: 'Administrador',
@@ -19,7 +19,7 @@ async function seed() {
     });
     console.log('✅ Admin criado!\n');
 
-    // 2. Criar usuário comum
+    //Criar usuário comum
     console.log('👤 Criando usuário comum...');
     await Usuario.create({
       nome: 'Operador',
@@ -29,7 +29,7 @@ async function seed() {
     });
     console.log('✅ Usuário criado!\n');
 
-    // 3. Criar clientes
+    //Criar clientes
     console.log('👥 Criando clientes...');
     const cliente1 = await Cliente.create({
       nome: 'Ateliê Bom Fio',
@@ -57,7 +57,7 @@ async function seed() {
 
     console.log(`✅ ${await Cliente.count()} clientes criados\n`);
 
-    // 4. Criar pedidos
+    //Criar pedidos
     console.log('📦 Criando pedidos...');
     
     await Pedido.create({

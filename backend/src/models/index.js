@@ -22,11 +22,11 @@ const sequelize = new Sequelize({
 // Importar modelos
 const Cliente = require('./cliente')(sequelize, DataTypes);
 const Pedido = require('./pedido')(sequelize, DataTypes);
-const Usuario = require('./usuario')(sequelize, DataTypes); // ⭐ CERTIFIQUE-SE QUE ESTA LINHA EXISTE
+const Usuario = require('./usuario')(sequelize, DataTypes); 
 
 // Associações
 Cliente.hasMany(Pedido, { foreignKey: 'clienteId' });
 Pedido.belongsTo(Cliente, { foreignKey: 'clienteId' });
 
-// ⭐ CERTIFIQUE-SE QUE Usuario ESTÁ SENDO EXPORTADO
+
 module.exports = { sequelize, Cliente, Pedido, Usuario };
