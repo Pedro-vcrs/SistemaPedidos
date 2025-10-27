@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const helmet = require('helmet');
 
-const { sequelize } = require('./models');
+const { sequelize } = require('../src/models');
 const { verificarToken } = require('./middleware/auth');
 
 const authRouter = require('./routes/auth');

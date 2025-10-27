@@ -4,6 +4,7 @@
     "builder": "RAILPACK"
   },
   "deploy": {
+    "startCommand": "node ../src/index.js",
     "runtime": "V2",
     "numReplicas": 1,
     "sleepApplication": false,
